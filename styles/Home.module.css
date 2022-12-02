@@ -12,6 +12,11 @@
   align-items: center;
 }
 
+.image {
+  height: 100vh;
+  width: 100vw;
+}
+
 .footer {
   display: flex;
   flex: 1;
