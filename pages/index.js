@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Notie - Coming Soon...</title>
+        <title>Notie By Onfranciis</title>
         <meta name="description" content="Notie by onfranciis" />
         <link rel="icon" href="/favicon.ico" />
         <link
@@ -29,28 +29,7 @@ export default function Home() {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
-      <main className={styles.main}>
-        <Image
-          height={1167}
-          width={1641}
-          alt="Notie Banner"
-          src="/Banner.png"
-          className={styles.image}
-        />
-      </main>
-
-      {/* <footer className={styles.footer}>
-        <a
-          href="https://www.onfranciis.dev"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          By onfranciis
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer> */}
+      <main className={styles.main}></main>
     </div>
   );
 }
