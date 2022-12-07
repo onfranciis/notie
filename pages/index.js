@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import Top from "../components/Top";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -29,7 +30,9 @@ export default function Home() {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
-      <main className={styles.main}></main>
+      <main>
+        <Top />
+      </main>
     </div>
   );
 }
