@@ -8,8 +8,32 @@
   margin: 0;
 }
 
-/* html,
+@font-face {
+  font-family: IndieFlower;
+  src: url(/IndieFlower.ttf);
+}
+
+.titleHeading {
+  text-shadow: 0 0 1px black;
+}
+
+.textCardEllipse {
+  display: block;
+  /* Fallback for non-webkit */
+  display: -webkit-box;
+  /* max-width: 400px; */
+  height: 110px;
+  /* Fallback for non-webkit */
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+html,
 body {
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-} */
+  font-family: IndieFlower, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
