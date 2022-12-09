@@ -22,8 +22,8 @@ const NewNote = ({ setMetaTitle }, ref) => {
       Color: color,
       Title: title,
       Body: body,
-      Date: moment(new Date()).utc().format("Do MMM, YYYY - hh:mma"),
-      Created: moment(new Date()).utc().format("Do MMM, YYYY - hh:mma"),
+      Date: moment(new Date()).format("Do MMM, YYYY - hh:mma"),
+      Created: moment(new Date()).format("Do MMM, YYYY - hh:mma"),
     }),
     [color, title, body]
   );
@@ -33,7 +33,13 @@ const NewNote = ({ setMetaTitle }, ref) => {
     () => {
       return {
         save: () => {
-          FakeNotes.push(NewNoteData);
+          if (title == "" && body == "") {
+            setTitle("Untitled Text");
+            setBody("Nothing has been added!");
+            FakeNotes.push(NewNoteData);
+          } else {
+            FakeNotes.push(NewNoteData);
+          }
         },
       };
     },
