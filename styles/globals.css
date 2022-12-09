@@ -32,6 +32,19 @@
   text-overflow: ellipsis;
 }
 
+.bgImage {
+  background-image: url("/BG\ Group.svg");
+  background-size: contain;
+  background-attachment: fixed;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 20%;
+  z-index: -1;
+}
+
 html,
 body {
   font-family: IndieFlower, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
