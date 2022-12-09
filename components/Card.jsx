@@ -8,8 +8,8 @@ const Card = ({ Color, Title, Body, Date, ID, preview }) => {
       )} rounded-lg p-4 ${bgColorPicker(Color)}`}
       onClick={() => preview(ID - 1)}
     >
-      <p className="titleHeading font-bold text-lg">{Title}</p>
-      <p className="textCardEllipse max-h-[15rem]">{Body}</p>
+      <p className="titleCardEllipse titleHeading font-bold text-lg">{Title}</p>
+      <p className="bodyCardEllipse max-h-[15rem]">{Body}</p>
       <p className="text-sm opacity-80">{Date}</p>
     </div>
   );

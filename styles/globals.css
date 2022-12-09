@@ -17,7 +17,22 @@
   text-shadow: 0 0 1px black;
 }
 
-.textCardEllipse {
+.titleCardEllipse {
+  display: block;
+  /* Fallback for non-webkit */
+  display: -webkit-box;
+  /* max-width: 400px; */
+  height: 34px;
+  /* Fallback for non-webkit */
+  font-size: 17px;
+  line-height: 2;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bodyCardEllipse {
   display: block;
   /* Fallback for non-webkit */
   display: -webkit-box;
