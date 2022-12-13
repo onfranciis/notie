@@ -15,7 +15,10 @@ const Top = ({ Mode, setMode, setMetaTitle, setSave }) => {
           src="/Notie_Logo2.svg"
           height={85 + Logo}
           width={208 + Logo}
-          onClick={() => setMode("View")}
+          onClick={() => {
+            setMode("View");
+            setMetaTitle("Notie By Onfranciis");
+          }}
         />
       </div>
       <div className="flex justify-center gap-2">
