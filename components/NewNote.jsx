@@ -7,21 +7,20 @@ import {
 } from "react";
 import { bgColorPicker, accentColorPicker, borderColorPicker } from "./Shared";
 import ColorTag from "./ColorTag";
-import FakeNotes from "./FakeNotes";
 import moment from "moment";
+import { receiveNote, sendNote } from "./HandleNote";
 
 const NewNote = ({ setMetaTitle }, ref) => {
   const [color, setColor] = useState("primary");
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const date = new Date();
 
   const NewNoteData = useMemo(
     () => ({
-      Id: FakeNotes.length + 1,
+      Id: receiveNote().length,
       Color: color,
-      Title: title,
-      Body: body,
+      Title: title == "" ? "Untitled Text" : title,
+      Body: body == "" ? "Nothing has been added!" : body,
       Date: moment(new Date()).format("Do MMM, YYYY - hh:mma"),
       Created: moment(new Date()).format("Do MMM, YYYY - hh:mma"),
     }),
@@ -36,9 +35,9 @@ const NewNote = ({ setMetaTitle }, ref) => {
           if (title == "" && body == "") {
             setTitle("Untitled Text");
             setBody("Nothing has been added!");
-            FakeNotes.push(NewNoteData);
+            sendNote(NewNoteData);
           } else {
-            FakeNotes.push(NewNoteData);
+            sendNote(NewNoteData);
           }
         },
       };
@@ -54,14 +53,12 @@ const NewNote = ({ setMetaTitle }, ref) => {
     }
   };
 
-  const handleKeyCombo = (e) => {};
-
   useEffect(() => {
     setMetaTitle("New Draft");
   }, []);
 
   return (
-    <div className="container h-full " onKeyUp={(e) => console.log(e)}>
+    <div className="container h-full ">
       <div
         className={` container flex flex-col gap-5 p-5 ${accentColorPicker(
           color
