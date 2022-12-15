@@ -1,28 +1,36 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import BgImage from "../components/BgImage";
-import Card from "../components/Card";
-import FakeNotes from "../components/FakeNotes";
 import NewNote from "../components/NewNote";
 import Preview from "../components/Preview";
+import { previewKeyShortcuts } from "../components/Shared";
 import Top from "../components/Top";
 import styles from "../styles/Home.module.css";
+import dynamic from "next/dynamic";
+import EditNote from "../components/EditNote";
+const CardsSection = dynamic(() => import("../components/CardsSection"), {
+  ssr: false,
+});
 
 export default function Home() {
   const [metaTitle, setMetaTitle] = useState("Notie By Onfranciis");
-  const [mode, setMode] = useState("Preview");
-  const [count, setCount] = useState(0);
-  const preview = FakeNotes[count];
+  const [mode, setMode] = useState("View");
+  const [ID, setID] = useState(0);
+  const [Index, setIndex] = useState(ID);
   const DoneRef = useRef();
+  const SafeRef = useRef();
+  const [note, setNote] = useState([]);
 
   const handlePreview = (value) => {
-    setCount(value);
+    setID(value);
+    setIndex(value);
     setMode("Preview");
   };
 
   const handleSave = () => {
     DoneRef.current?.save();
+    SafeRef.current?.save();
   };
 
   return (
@@ -59,34 +67,38 @@ export default function Home() {
           setMetaTitle={(data) => setMetaTitle(data)}
           setSave={() => handleSave()}
         />
+
         {mode == "View" ? (
           <div className="container p-1 flex flex-row flex-wrap justify-center items-center gap-4">
-            {FakeNotes.map((item) => (
-              <Card
-                Key={item.Id}
-                Color={item.Color}
-                Title={item.Title}
-                Body={item.Body}
-                Date={item.Date}
-                ID={item.Id}
-                preview={(data) => handlePreview(data)}
-              />
-            ))}
+            {<CardsSection handlePreview={(data) => handlePreview(data)} />}
           </div>
         ) : mode == "Edit" ? (
-          <NewNote setMetaTitle={(data) => setMetaTitle(data)} ref={DoneRef} />
+          <NewNote
+            setMetaTitle={(data) => setMetaTitle(data)}
+            ref={DoneRef}
+            Note={note}
+            setNote={(data) => setNote(data)}
+          />
         ) : (
           ""
         )}
         {mode == "Preview" ? (
           <Preview
-            ID={count}
-            Color={preview.Color}
-            Title={preview.Title}
-            Body={preview.Body}
-            Date={preview.Date}
-            Next={() => setCount(count + 1)}
-            Prev={() => setCount(count - 1)}
+            ID={ID}
+            Index={Index}
+            setIndex={(data) => setIndex(data)}
+            Mode={mode}
+            setMode={(data) => setMode(data)}
+          />
+        ) : (
+          ""
+        )}
+        {mode == "EditNote" ? (
+          <EditNote
+            ref={SafeRef}
+            setMetaTitle={(data) => setMetaTitle(data)}
+            Index={Index}
+            setIndex={(data) => setIndex(data)}
           />
         ) : (
           ""

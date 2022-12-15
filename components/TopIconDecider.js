@@ -11,10 +11,10 @@ export const TopIconDecider = ({ Mode, setMode, setMetaTitle, setSave }) => {
           setMode("Edit");
         }}
       >
-        <MdEdit size="1.7em" title="Done" className="text-tertiary " />
+        <MdEdit size="1.7em" title="Add New Note" className="text-tertiary " />
       </div>
     );
-  } else if (Mode == "Edit") {
+  } else if (Mode == "Edit" || Mode == "EditNote") {
     return (
       <div
         className="bg-primary h-fit w-fit p-1 rounded-lg hover:bg-primary2 transition-all duration-100 col-start-3 "
