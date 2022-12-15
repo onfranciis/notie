@@ -1,31 +1,38 @@
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
-import FakeNotes from "./FakeNotes";
-import { bgColorPicker, accentColorPicker, borderColorPicker } from "./Shared";
 
-const Preview = ({ Color, Title, Body, Date, Next, Prev, ID }) => {
+import { bgColorPicker, accentColorPicker, borderColorPicker } from "./Shared";
+import { receiveNote } from "./HandleNote";
+
+const Preview = ({ Index, setIndex, setMode }) => {
+  const Note = receiveNote()[Index];
+
   const handleNavigation = (value) => {
     if (value == "Next") {
-      if (ID < FakeNotes.length - 1) {
-        Next();
+      if (Index < receiveNote().length - 1) {
+        setIndex(Index + 1);
       }
     } else {
-      if (ID > 0) {
-        Prev();
+      if (Index > 0) {
+        setIndex(Index - 1);
       }
     }
   };
 
   return (
     <div
-      className={`container flex flex-col gap-2 items-center border-[3px] ${borderColorPicker(
-        Color
-      )} rounded-lg p-4 ${bgColorPicker(Color)} ${accentColorPicker(
-        Color
+      className={`container max-w-[90%] max-h-[90vh] flex flex-col gap-2 items-center border-[3px] ${borderColorPicker(
+        Note?.Color
+      )} rounded-lg p-4 ${bgColorPicker(Note?.Color)} ${accentColorPicker(
+        Note?.Color
       )} mt-6`}
+      onDoubleClick={() => setMode("EditNote")}
     >
       <div className="container flex justify-between ">
-        <p className="titleHeading font-bold text-lg" title={Title}>
-          {Title}
+        <p
+          className="titleHeading font-bold text-lg max-h-[10vh] overflow-scroll"
+          title={Note?.Title}
+        >
+          {Note?.Title}
         </p>
         <div className="flex gap-0 items-start">
           <div
@@ -44,9 +51,12 @@ const Preview = ({ Color, Title, Body, Date, Next, Prev, ID }) => {
         </div>
       </div>
 
-      <p className="max-h-[50vh] overflow-scroll py-1">{Body}</p>
+      <p className=" overflow-scroll  py-1 self-stretch whitespace-pre-wrap">
+        {Note?.Body}
+        <pre></pre>
+      </p>
 
-      <p className="text-sm opacity-80">{Date}</p>
+      <p className="text-sm opacity-80">{Note?.Date}</p>
     </div>
   );
 };
