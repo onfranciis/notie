@@ -27,7 +27,7 @@ const EditNote = ({ setMetaTitle, Index, setIndex }, ref) => {
       Title: title == "" ? "Untitled Text" : title,
       Body: body == "" ? "Nothing has been added!" : body,
       Date: moment(new Date()).format("Do MMM, YYYY - hh:mma"),
-      Created: moment(new Date()).format("Do MMM, YYYY - hh:mma"),
+      Created: receiveNote()[IndexUpdate].Created,
     }),
     [color, title, body]
   );
