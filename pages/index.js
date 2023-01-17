@@ -9,6 +9,7 @@ import Top from "../components/Top";
 import styles from "../styles/Home.module.css";
 import dynamic from "next/dynamic";
 import EditNote from "../components/EditNote";
+import Info from "../components/Info";
 const CardsSection = dynamic(() => import("../components/CardsSection"), {
   ssr: false,
 });
@@ -21,6 +22,7 @@ export default function Home() {
   const DoneRef = useRef();
   const SafeRef = useRef();
   const [note, setNote] = useState([]);
+  const [info, setInfo] = useState(false);
 
   const handlePreview = (value) => {
     setID(value);
@@ -59,13 +61,18 @@ export default function Home() {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
-      <main className="tracking-wider flex flex-col justify-center items-center pb-8 ">
+      <main
+        className={`tracking-wider flex flex-col justify-center items-center pb-8 relative ${
+          info ? "blur-[8px]" : ""
+        } transition`}
+      >
         <BgImage />
         <Top
           Mode={mode}
           setMode={(data) => setMode(data)}
           setMetaTitle={(data) => setMetaTitle(data)}
           setSave={() => handleSave()}
+          setInfo={(data) => setInfo(data)}
         />
 
         {mode == "View" ? (
@@ -89,6 +96,7 @@ export default function Home() {
             setIndex={(data) => setIndex(data)}
             Mode={mode}
             setMode={(data) => setMode(data)}
+            setInfo={(data) => setInfo(data)}
           />
         ) : (
           ""
@@ -104,6 +112,7 @@ export default function Home() {
           ""
         )}
       </main>
+      {info && <Info setInfo={() => setInfo(false)} Index={Index} />}
     </div>
   );
 }
