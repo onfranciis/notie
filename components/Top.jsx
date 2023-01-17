@@ -4,7 +4,7 @@ import { IoMdCheckmark } from "react-icons/io";
 import { BsInfoLg } from "react-icons/bs";
 import { TopIconDecider } from "./TopIconDecider";
 
-const Top = ({ Mode, setMode, setMetaTitle, setSave }) => {
+const Top = ({ Mode, setMode, setMetaTitle, setSave, setInfo }) => {
   const Logo = 10;
 
   return (
@@ -27,6 +27,7 @@ const Top = ({ Mode, setMode, setMetaTitle, setSave }) => {
           setMode={(data) => setMode(data)}
           setMetaTitle={(data) => setMetaTitle(data)}
           setSave={setSave}
+          setInfo={(data) => setInfo(data)}
         />
       </div>
     </div>
