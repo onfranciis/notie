@@ -25,7 +25,6 @@ const Preview = ({ Index, setIndex, setMode }) => {
       )} rounded-lg p-4 ${bgColorPicker(Note?.Color)} ${accentColorPicker(
         Note?.Color
       )} mt-6`}
-      onDoubleClick={() => setMode("EditNote")}
     >
       <div className="container flex justify-between ">
         <p
