@@ -4,7 +4,7 @@ const Info = ({ removeInfo, Index, setInfo }) => {
   const { Created, Date, Body, Title } = receiveNote()[Index];
   return (
     <div
-      className="absolute h-screen w-screen top-0 left-0 flex flex-row justify-start items-end px-5 py-7 transition"
+      className="fixed h-screen w-screen top-0 left-0 flex flex-row justify-start items-end px-5 py-7 transition"
       onClick={() => setInfo(false)}
     >
       <div className=" flex-col bg-[white] max-h-[90vh] w-[25rem] py-2 px-4 rounded-lg drop-shadow-[0_0_5px_black] overflow-scroll">
