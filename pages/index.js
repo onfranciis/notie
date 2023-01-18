@@ -10,6 +10,7 @@ import styles from "../styles/Home.module.css";
 import dynamic from "next/dynamic";
 import EditNote from "../components/EditNote";
 import Info from "../components/Info";
+import { receiveNote } from "../components/HandleNote";
 const CardsSection = dynamic(() => import("../components/CardsSection"), {
   ssr: false,
 });
@@ -90,24 +91,30 @@ export default function Home() {
           ""
         )}
         {mode == "Preview" ? (
-          <Preview
-            ID={ID}
-            Index={Index}
-            setIndex={(data) => setIndex(data)}
-            Mode={mode}
-            setMode={(data) => setMode(data)}
-            setInfo={(data) => setInfo(data)}
-          />
+          <>
+            <p>{`${Index + 1}/${receiveNote().length}`}</p>
+            <Preview
+              ID={ID}
+              Index={Index}
+              setIndex={(data) => setIndex(data)}
+              Mode={mode}
+              setMode={(data) => setMode(data)}
+              setInfo={(data) => setInfo(data)}
+            />
+          </>
         ) : (
           ""
         )}
         {mode == "EditNote" ? (
-          <EditNote
-            ref={SafeRef}
-            setMetaTitle={(data) => setMetaTitle(data)}
-            Index={Index}
-            setIndex={(data) => setIndex(data)}
-          />
+          <>
+            <p>{`${Index + 1}/${receiveNote().length}`}</p>
+            <EditNote
+              ref={SafeRef}
+              setMetaTitle={(data) => setMetaTitle(data)}
+              Index={Index}
+              setIndex={(data) => setIndex(data)}
+            />
+          </>
         ) : (
           ""
         )}
