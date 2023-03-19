@@ -18,15 +18,13 @@ const CardsSection = dynamic(() => import("../components/CardsSection"), {
 export default function Home() {
   const [metaTitle, setMetaTitle] = useState("Notie By Onfranciis");
   const [mode, setMode] = useState("View");
-  const [ID, setID] = useState(0);
-  const [Index, setIndex] = useState(ID);
+  const [Index, setIndex] = useState(0);
   const DoneRef = useRef();
   const SafeRef = useRef();
   const [note, setNote] = useState([]);
   const [info, setInfo] = useState(false);
 
   const handlePreview = (value) => {
-    setID(value);
     setIndex(value);
     setMode("Preview");
   };
@@ -68,12 +66,15 @@ export default function Home() {
         } transition`}
       >
         <BgImage />
+
         <Top
           Mode={mode}
           setMode={(data) => setMode(data)}
           setMetaTitle={(data) => setMetaTitle(data)}
           setSave={() => handleSave()}
-          setInfo={(data) => setInfo(data)}
+          setInfo={(data) => {
+            setInfo(data);
+          }}
         />
 
         {mode == "View" ? (
@@ -90,11 +91,11 @@ export default function Home() {
         ) : (
           ""
         )}
+
         {mode == "Preview" ? (
           <>
             <p>{`${Index + 1}/${receiveNote().length}`}</p>
             <Preview
-              ID={ID}
               Index={Index}
               setIndex={(data) => setIndex(data)}
               Mode={mode}
@@ -105,6 +106,7 @@ export default function Home() {
         ) : (
           ""
         )}
+
         {mode == "EditNote" ? (
           <>
             <p>{`${Index + 1}/${receiveNote().length}`}</p>
@@ -119,7 +121,14 @@ export default function Home() {
           ""
         )}
       </main>
-      {info && <Info setInfo={() => setInfo(false)} Index={Index} />}
+
+      {info && (
+        <Info
+          setInfo={() => setInfo(false)}
+          Index={Index}
+          setIndex={() => setIndex(Index - 1)}
+        />
+      )}
     </div>
   );
 }

@@ -1,15 +1,22 @@
+import { useEffect, useState } from "react";
 import Card from "./Card";
 import { receiveNote } from "./HandleNote";
 
 const CardsSection = ({ handlePreview }) => {
-  return receiveNote()?.map((item) => (
+  const [Notes, setNotes] = useState(receiveNote());
+
+  useEffect(() => {
+    setNotes(receiveNote());
+  }, []);
+
+  return Notes?.map((item, index) => (
     <Card
-      Key={item.Created}
+      Key={index}
       Color={item.Color}
       Title={item.Title}
       Body={item.Body}
       Date={item.Date}
-      ID={item.Id}
+      Index={index}
       preview={(data) => handlePreview(data)}
     />
   ));

@@ -77,6 +77,7 @@ const NewNote = ({ setMetaTitle }, ref) => {
             handleMetaTitle(e.currentTarget.value);
             setTitle(e.currentTarget.value);
           }}
+          autoFocus
         />
         <textarea
           name="Body"

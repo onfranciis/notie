@@ -2,9 +2,14 @@ import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 
 import { bgColorPicker, accentColorPicker, borderColorPicker } from "./Shared";
 import { receiveNote } from "./HandleNote";
+import { useEffect, useState } from "react";
 
 const Preview = ({ Index, setIndex, setMode }) => {
-  const Note = receiveNote()[Index];
+  const [Note, setNote] = useState(receiveNote()[Index]);
+
+  useEffect(() => {
+    setNote(receiveNote()[Index]);
+  }, [Index]);
 
   const handleNavigation = (value) => {
     if (value == "Next") {

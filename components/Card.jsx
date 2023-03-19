@@ -1,6 +1,6 @@
 import { bgColorPicker, accentColorPicker, borderColorPicker } from "./Shared";
 
-const Card = ({ Color, Title, Body, Date, ID, preview }) => {
+const Card = ({ Color, Title, Body, Date, preview, Index }) => {
   return (
     <div
       title={Title}
@@ -8,7 +8,7 @@ const Card = ({ Color, Title, Body, Date, ID, preview }) => {
         Color
       )} rounded-lg p-4 ${bgColorPicker(Color)}`}
       onClick={() => {
-        preview(ID);
+        preview(Index);
       }}
     >
       <p className="titleCardEllipse titleHeading font-bold text-lg">{Title}</p>
