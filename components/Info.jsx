@@ -1,8 +1,22 @@
 import { MdDelete } from "react-icons/md";
 import { deleteNote, receiveNote } from "./HandleNote";
 
-const Info = ({ Index, setIndex, setInfo }) => {
+const Info = ({ Index, setIndex, setInfo, setMode }) => {
   const { Created, Date, Body, Title } = receiveNote()[Index];
+
+  const handleIndex = () => {
+    if (Index == 0 && receiveNote().length == 0) {
+      setMode("View");
+      return null;
+    } else if (Index > 0 && Index <= receiveNote().length - 1) {
+      return Index - 1;
+    } else if (Index == 0 && receiveNote().length !== 0) {
+      return 0;
+    } else {
+      return Index - 1;
+    }
+  };
+
   return (
     <div
       className="fixed h-screen w-screen top-0 left-0 flex flex-row justify-start items-end px-5 py-7 transition"
@@ -14,8 +28,8 @@ const Info = ({ Index, setIndex, setInfo }) => {
           onClick={(e) => {
             e.stopPropagation();
             setInfo(false);
-            setIndex(false);
             deleteNote(Index);
+            setIndex(handleIndex());
           }}
         >
           <MdDelete size="1.5em" title="Delete" className="text-tertiary " />

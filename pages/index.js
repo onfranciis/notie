@@ -126,7 +126,8 @@ export default function Home() {
         <Info
           setInfo={() => setInfo(false)}
           Index={Index}
-          setIndex={() => setIndex(Index - 1)}
+          setIndex={(data) => setIndex(data)}
+          setMode={(data) => setMode(data)}
         />
       )}
     </div>
