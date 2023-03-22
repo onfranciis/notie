@@ -11,7 +11,7 @@ const CardsSection = ({ handlePreview }) => {
 
   return Notes?.map((item, index) => (
     <Card
-      Key={index}
+      Key={item.Key}
       Color={item.Color}
       Title={item.Title}
       Body={item.Body}
