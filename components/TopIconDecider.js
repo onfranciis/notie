@@ -1,6 +1,7 @@
 import { BsInfoLg } from "react-icons/bs";
 import { IoMdCheckmark } from "react-icons/io";
 import { MdEdit } from "react-icons/md";
+import { receiveNote } from "./HandleNote";
 
 export const TopIconDecider = ({
   Mode,
@@ -52,10 +53,10 @@ export const TopIconDecider = ({
         <div
           className="bg-primary h-fit w-fit p-1 rounded-lg hover:bg-primary2 transition-all duration-100 col-start-3 "
           onClick={() => {
-            setMode("EditNote");
+            receiveNote().length === 0 ? setMode("Edit") : setMode("EditNote");
           }}
         >
-          <MdEdit size="1.7em" title="Done" className="text-tertiary " />
+          <MdEdit size="1.7em" title="Modify" className="text-tertiary " />
         </div>
 
         <div
@@ -64,7 +65,7 @@ export const TopIconDecider = ({
             setInfo(true);
           }}
         >
-          <BsInfoLg size="1.7em" title="Done" className="text-tertiary " />
+          <BsInfoLg size="1.7em" title="Info" className="text-tertiary " />
         </div>
       </>
     );
