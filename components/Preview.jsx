@@ -4,12 +4,13 @@ import { bgColorPicker, accentColorPicker, borderColorPicker } from "./Shared";
 import { receiveNote } from "./HandleNote";
 import { useEffect, useState } from "react";
 
-const Preview = ({ Index, setIndex, setMode }) => {
+const Preview = ({ Index, setIndex }) => {
   const [Note, setNote] = useState(receiveNote()[Index]);
+  const { length } = receiveNote();
 
   useEffect(() => {
     setNote(receiveNote()[Index]);
-  }, [Index]);
+  }, [length, Index]);
 
   const handleNavigation = (value) => {
     if (value == "Next") {
@@ -57,7 +58,6 @@ const Preview = ({ Index, setIndex, setMode }) => {
 
       <p className=" overflow-scroll  py-1 self-stretch whitespace-pre-wrap">
         {Note?.Body}
-        <pre></pre>
       </p>
 
       <p className="text-sm opacity-80">{Note?.Date}</p>
