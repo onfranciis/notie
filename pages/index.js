@@ -14,6 +14,9 @@ import { receiveNote } from "../components/HandleNote";
 const CardsSection = dynamic(() => import("../components/CardsSection"), {
   ssr: false,
 });
+const EmptyNote = dynamic(() => import("../components/EmptyNote"), {
+  ssr: false,
+});
 
 export default function Home() {
   const [metaTitle, setMetaTitle] = useState("Notie By Onfranciis");
@@ -120,6 +123,8 @@ export default function Home() {
         ) : (
           ""
         )}
+
+        {<EmptyNote mode={mode} setMode={() => setMode("Edit")} />}
       </main>
 
       {info && (
