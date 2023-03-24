@@ -11,7 +11,11 @@ const EmptyNote = ({ mode, setMode }) => {
           Welcome to{" "}
           <em className="font-bold">
             Notie by{" "}
-            <Link href="https://www.onfranciis.dev" className="underline">
+            <Link
+              href="https://www.onfranciis.dev"
+              target="_blank"
+              className="underline"
+            >
               onfranciis
             </Link>
           </em>
