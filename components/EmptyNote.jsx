@@ -6,8 +6,8 @@ const EmptyNote = ({ mode, setMode }) => {
   return (
     mode == "View" &&
     receiveNote()?.length == 0 && (
-      <div className=" w-full text-center text-primary bg-[white] py-4 px-4  drop-shadow-[0_0_5px_black]">
-        <h2>
+      <div className=" max-w-[90%] text-center text-primary bg-[white] py-4 px-4  drop-shadow-[0_0_2px_black] rounded-md mt-5">
+        <h2 className="mb-5">
           Welcome to{" "}
           <em className="font-bold">
             Notie by{" "}
@@ -44,7 +44,7 @@ const EmptyNote = ({ mode, setMode }) => {
         <br />
         <p>
           For feedbacks, support or enquiries, reach out to me at{" "}
-          <Link href="mailto:notie@onfranciis.dev">notie@onfranciis.dev</Link>{" "}
+          <Link href="mailto:hello@onfranciis.dev">hello@onfranciis.dev</Link>{" "}
         </p>
       </div>
     )
